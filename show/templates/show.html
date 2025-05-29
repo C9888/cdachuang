@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>恶意软件检测系统展示界面</title>
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+            color: #fff;
+        }
+
+        /* 外部容器 */
+        body{
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background-image: url("/static/background.jpg");
+            background-size: 100% 100%;
+        }
+
+        /* 内部窗口 */
+        .inner_box {
+            position: absolute;
+            width: 350px;
+            height: 350px;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            /* display: flex; */
+        }
+
+        .inner_box div {
+            position: center;
+        }
+
+        .inner_box .center_form {
+            position: relative;
+            width: 410px;
+            height: 300px;
+            background-color: rgba(134, 221, 221, 0.219);
+            box-shadow: 0px 0px 3px rgb(76, 219, 219);
+        }
+
+        .inner_box .center_form p {
+            height: 60px;
+            width: 410px;
+            text-align: center;
+        }
+
+        .title {
+            height: 50px !important;
+            line-height: 50px;
+            background-color: rgba(82, 202, 182, 0.575);
+            margin-bottom: 40px;
+        }
+
+        input {
+            width: 310px;
+            margin: 10px 50px 0px 40px;
+            height: 35px;
+            padding-left: 20px;
+            background: none;
+            border: none;
+            border-bottom: 1px solid #fff;
+            font-size: 15px;
+        }
+
+        /* remember me */
+        .center_form .chk {
+            width: 330px;
+            height: 60px;
+            line-height: 60px;
+            margin: 10px 40px 0px 40px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+        }
+
+        .chk span input {
+            width: 15px;
+            height: 15px;
+            margin: 10px;
+        }
+
+        .file-upload {
+            position: absolute;
+            font-size: 100px;
+            opacity: 0;
+            right: 0;
+            top: 0;
+        }
+
+        .file-upload-label {
+            position: absolute;
+            background-color: rgba(134, 221, 221, 0.219); /* 设置你想要的颜色 */
+            color: #fff;
+            padding: 10px;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .put_btn {
+            background-color: rgba(134, 221, 221, 0.219); /* 设置你想要的颜色 */
+            color: #fff;
+            padding: 10px;
+            display: inline-block;
+            cursor: pointer;
+            border: none;
+        }
+    </style>
+
+</head>
+<body>
+<div class="inner_box">
+    <div class="center_form">
+        <p class="title"><span>结果展示</span></p>
+        <p>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+        <!--#这是一个模板变量
+Django 自动创建显示表单所需要的全部字段
+修饰符as_p让Django以字段格式渲染所有的表单元素，这是一种整洁的显示表单的简单方式
+-->
+        <p><button type="submit" class="put_btn">选择你要上传的apk文件</button></p>
+
+            </form>
+        </p>
+        <p>{{ name }}检测结果为:{{ result }}</p>
+    </div>
+</div>
+</body>
+</html>

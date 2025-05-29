@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>恶意软件检测系统后端检测模型展示界面</title>
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+            color: #fff;
+        }
+
+        /* 外部容器 */
+        body{
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background-image: url("/static/background.jpg");
+            background-size: 100% 100%;
+        }
+
+        /* 内部窗口 */
+        .inner_box1 {
+            position: absolute;
+            width: 400px;
+            height: 300px;
+            left: 20%;
+            top: 40%;
+            transform: translate(-50%, -50%);
+            /* display: flex; */
+        }
+        .inner_box2 {
+            position: absolute;
+            width: 400px;
+            height: 300px;
+            left: 50%;
+            top: 40%;
+            transform: translate(-50%, -50%);
+            /* display: flex; */
+        }
+        .inner_box3{
+            position: absolute;
+            width: 400px;
+            height: 300px;
+            left: 80%;
+            top: 40%;
+            transform: translate(-50%, -50%);
+            /* display: flex; */
+        }
+
+        .inner_box div {
+            position: center;
+        }
+
+        .inner_box .center_form {
+            position: relative;
+            width: 410px;
+            height: 300px;
+            background-color: rgba(134, 221, 221, 0.219);
+            box-shadow: 0px 0px 3px rgb(76, 219, 219);
+        }
+
+        .inner_box .center_form p {
+            height: 60px;
+            width: 410px;
+            text-align: center;
+        }
+
+        .title {
+            height: 50px !important;
+            line-height: 50px;
+            background-color: rgba(82, 202, 182, 0.575);
+            margin-bottom: 40px;
+        }
+
+        input {
+            width: 310px;
+            margin: 10px 50px 0px 40px;
+            height: 35px;
+            padding-left: 20px;
+            background: none;
+            border: none;
+            border-bottom: 1px solid #fff;
+            font-size: 15px;
+        }
+
+        /* remember me */
+        .center_form .chk {
+            width: 330px;
+            height: 60px;
+            line-height: 60px;
+            margin: 10px 40px 0px 40px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+        }
+
+        .chk span input {
+            width: 15px;
+            height: 15px;
+            margin: 10px;
+        }
+
+        .file-upload {
+            position: absolute;
+            font-size: 100px;
+            opacity: 0;
+            right: 0;
+            top: 0;
+        }
+
+        .file-upload-label {
+            position: absolute;
+            background-color: rgba(134, 221, 221, 0.219); /* 设置你想要的颜色 */
+            color: #fff;
+            padding: 10px;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .put_btn {
+            background-color: rgba(134, 221, 221, 0.219); /* 设置你想要的颜色 */
+            color: #fff;
+            padding: 10px;
+            display: inline-block;
+            cursor: pointer;
+            border: none;
+        }
+    </style>
+
+</head>
+<body>
+<div class="inner_box1">
+    <div class="center_form">
+        <p class="title"><span>数据规模</span></p>
+        <p class="center_form">第一阶段训练样本：<br>恶意样本1507个+良性样本1686个（2021年）<br>
+            第二阶段训练样本：<br>恶意样本788个+良性样本580个（2023年)<br>
+            测试集样本：<br>恶意样本213个+良性样本237个（2023）<br>
+            验证集：<br>恶意样本252个+252个良性样本（2022年）</p>
+    </div>
+</div>
+<div class="inner_box2">
+    <div class="center_form">
+        <p class="title"><span>测试集结果 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp        验证集结果</span></p>
+        <p class="center_form">Accuracy：92.42%  &nbsp&nbsp&nbsp&nbspAccuracy：88.86% <br>
+                                Precision：91.73% &nbsp&nbsp&nbsp&nbspPrecision：83.68%<br>
+                                Recall：94.07%&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Recall：96.01%<br>
+                                F1Score：92.98%&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspF1Score：89.42%<br>
+        </p>
+    </div>
+</div>
+
+<div class="inner_box3">
+    <div class="center_form">
+        <p class="title"><span>实验结论</span></p>
+        <p class="center_form">经过测试集和验证集对比得出结论：<br>
+            基于simclr算法训练的模型具有良好的泛化能力<br>
+            在测试集和训练集上达到90%左右的准确率
+    </div>
+</div>
+</body>
+</html>
