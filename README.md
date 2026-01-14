@@ -195,3 +195,111 @@ classifier_model.load_state_dict(torch.load('classify_model.pth'))
 ---
 
 **注**：本项目需要用户自行准备训练数据和测试数据。请确保遵循相关法律法规获取和使用APK文件。
+# Showresult Django 应用
+
+## 目录结构
+
+```
+showresult/
+├── __init__.py          # 应用初始化文件，标志这是一个 Python 包
+├── __pycache__/         # Python 字节码缓存目录
+│   ├── __init__.cpython-38.pyc
+│   ├── forms.cpython-38.pyc
+│   └── views.cpython-38.pyc
+├── admin.py             # Django 管理后台配置文件
+├── apps.py              # 应用配置文件
+├── forms.py             # 表单定义文件
+├── migrations/          # 数据库迁移目录
+│   └── __init__.py
+├── models.py            # 数据库模型文件
+├── tests.py             # 测试用例文件
+└── views.py             # 视图函数文件
+```
+
+## 文件详细说明
+
+### 1. `__init__.py`
+这是一个空文件，用于标志 `showresult` 目录是一个 Python 包。
+
+### 2. `admin.py`
+```python
+from django.contrib import admin
+
+# Register your models here.
+```
+
+该文件用于配置 Django 管理后台，目前还没有注册任何模型。
+
+### 3. `apps.py`
+```python
+from django.apps import AppConfig
+
+
+class ShowresultConfig(AppConfig):
+    default_auto_field = 'django.db.models.BigAutoField'
+    name = 'showresult'
+```
+
+该文件定义了应用的配置类 `ShowresultConfig`，指定了默认的自动字段类型和应用名称。
+
+### 4. `forms.py`
+```python
+#!/usr/bin/python
+# author zhanghan
+# 2024年04月07日
+from django import forms
+
+class UploadFileForm(forms.Form):
+    file = forms.FileField()
+```
+
+该文件定义了一个表单类 `UploadFileForm`，用于处理文件上传。表单包含一个 `file` 字段，用于接收用户上传的文件。
+
+### 5. `models.py`
+```python
+from django.db import models
+
+# Create your models here.
+```
+
+该文件用于定义数据库模型，目前还没有定义任何模型。
+
+### 6. `tests.py`
+```python
+from django.test import TestCase
+
+# Create your tests here.
+```
+
+该文件用于编写测试用例，目前还没有添加任何测试代码。
+
+### 7. `views.py`
+该文件包含了 Django 应用的主要业务逻辑，定义了两个视图函数：`show` 和 `showresult`。
+
+#### `show` 视图函数
+该函数处理文件上传请求，并对上传的 APK 文件进行分析和分类。主要步骤如下：
+1. 处理用户上传的 APK 文件，将其保存到服务器的 `media` 目录中
+2. 提取 APK 文件中的 DEX 文件
+3. 将 DEX 文件转换为图像
+4. 使用预训练的模型对图像进行分类，判断是否为恶意软件
+5. 将分类结果返回给用户
+
+#### `showresult` 视图函数
+该函数简单地渲染 `showresult.html` 模板，显示结果页面。
+
+#### 辅助函数
+- `apk2dex()`: 从 APK 文件中提取 DEX 文件
+- `deal_with_apk()`: 将 DEX 文件转换为图像
+- `classify()`: 使用深度学习模型对 APK 图像进行分类
+
+## 技术栈
+
+- Python
+- Django
+- PyTorch
+- OpenCV
+- PIL
+
+## 功能描述
+
+该 Django 应用主要用于分析 APK 文件是否为恶意软件。用户可以上传 APK 文件，应用会将其转换为图像，然后使用深度学习模型对图像进行分类，最终将分类结果展示给用户。
